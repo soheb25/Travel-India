@@ -79,9 +79,14 @@ export default {
     
     async handleGoogleSignIn() {
       this.googleLoading = true;
+      this.signInError = null;
       await this.signInWithGoogle();
-      // Note: This function initiates a redirect, so the loading state 
-      // will be managed upon return from OAuth provider.
+      const authStore = useAuthStore();
+      if (authStore.error) {
+        this.signInError = authStore.error;
+        this.googleLoading = false;
+      }
+      // If no error, browser is already redirecting to Google — don't reset loading
     }
   }
 };

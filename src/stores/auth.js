@@ -111,26 +111,18 @@ export const useAuthStore = defineStore('auth', {
       this.isLoading = true;
       this.error = null;
       try {
-        // This initiates a redirect to Google
         const { error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-                // You can add a redirect URL option here if needed
-            }
+          provider: 'google',
+          options: {
+            redirectTo: window.location.origin
+          }
         });
-
         if (error) throw error;
-        // The browser handles the redirect and subsequent session update
-        
+        // Browser redirects to Google — isLoading stays true intentionally
       } catch (err) {
         this.error = err.message || 'Google sign-in failed.';
-      } finally {
-        // Note: isLoading remains true during redirect and is reset upon return 
-        // via the fetchSession listener logic (if implemented).
-        if (!this.error) return; 
         this.isLoading = false;
       }
     },
-    // Implement signInWithOAuth(provider) for Google next
   }
 });
