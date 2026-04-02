@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DARK MODE — Tailwind v4 variant
+   ============================================================ */
+@variant dark (&:where(.dark, .dark *));
+
+/* Smooth scroll — lightweight, no library needed */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dark mode base */
+.dark body {
+  background-color: #0f0f1a;
+  color: #e2e8f0;
+}
+
+/* ============================================================
+   3D & DEPTH UTILITIES
+   ============================================================ */
+.perspective     { perspective: 1000px; }
+.perspective-sm  { perspective: 600px; }
+
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+.card-3d:hover {
+  transform: rotateX(-4deg) rotateY(4deg) translateY(-6px) scale(1.02);
+  box-shadow:
+    0 20px 40px -8px rgba(99, 102, 241, 0.25),
+    0 8px 16px -4px rgba(0, 0, 0, 0.12),
+    4px 4px 0px rgba(99, 102, 241, 0.08);
+}
+
+.lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  will-change: transform;
+}
+.lift:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 24px 48px -12px rgba(99, 102, 241, 0.2), 0 8px 24px -4px rgba(0,0,0,0.1);
+}
+
+.btn-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 6px 0 rgba(67,56,202,0.6), 0 8px 16px rgba(99,102,241,0.3);
+}
+.btn-3d:hover  { transform: translateY(-2px); box-shadow: 0 8px 0 rgba(67,56,202,0.6), 0 12px 20px rgba(99,102,241,0.35); }
+.btn-3d:active { transform: translateY(4px);  box-shadow: 0 2px 0 rgba(67,56,202,0.6), 0 4px 8px rgba(99,102,241,0.2); }
+
+.shadow-3d {
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.07), 0 4px 8px rgba(0,0,0,0.07),
+    0 8px 16px rgba(0,0,0,0.06), 0 16px 32px rgba(99,102,241,0.08),
+    0 32px 64px rgba(99,102,241,0.05);
+}
+
+/* ============================================================
+   FLOATING ANIMATIONS
+   ============================================================ */
+@keyframes float      { 0%,100%{transform:translateY(0) rotate(0deg)} 33%{transform:translateY(-12px) rotate(1deg)} 66%{transform:translateY(-6px) rotate(-1deg)} }
+@keyframes float-slow { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-20px) scale(1.02)} }
+
+.float      { animation: float 4s ease-in-out infinite; }
+.float-slow { animation: float-slow 7s ease-in-out infinite; }
+.float-delay-1 { animation-delay: 0.5s; }
+.float-delay-2 { animation-delay: 1s; }
+.float-delay-3 { animation-delay: 1.5s; }
+
+/* ============================================================
+   SHIMMER / SHINE
+   ============================================================ */
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+@keyframes shine   { 0%{background-position:-200% center} 100%{background-position:200% center} }
+
+.text-shine {
+  background: linear-gradient(90deg, #6366f1 0%, #a855f7 25%, #ec4899 50%, #a855f7 75%, #6366f1 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
+}
+
+/* ============================================================
+   GLASS MORPHISM
+   ============================================================ */
+.glass {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.dark .glass {
+  background: rgba(15,15,30,0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.glass-dark {
+  background: rgba(30,27,75,0.85);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.glass-indigo {
+  background: rgba(99,102,241,0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(99,102,241,0.2);
+}
+
+/* ============================================================
+   PARALLAX BLOBS
+   ============================================================ */
+@keyframes blob-1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.05)} 66%{transform:translate(-20px,15px) scale(0.97)} }
+@keyframes blob-2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-25px,20px) scale(1.03)} 66%{transform:translate(20px,-15px) scale(0.98)} }
+@keyframes blob-3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(15px,25px) scale(1.04)} }
+
+.blob-1 { animation: blob-1 10s ease-in-out infinite; }
+.blob-2 { animation: blob-2 13s ease-in-out infinite; }
+.blob-3 { animation: blob-3 16s ease-in-out infinite; }
+
+/* ============================================================
+   ROUTE TRANSITIONS
+   ============================================================ */
+.fade-slide-enter-active { transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+.fade-slide-leave-active { transition: all 0.25s ease-in; }
+.fade-slide-enter-from   { opacity: 0; transform: translateY(24px) scale(0.98); }
+.fade-slide-leave-to     { opacity: 0; transform: translateY(-12px) scale(0.99); }
+
+/* ============================================================
+   GLOW
+   ============================================================ */
+.glow-indigo   { box-shadow: 0 0 20px rgba(99,102,241,0.4), 0 0 40px rgba(99,102,241,0.15); }
+.glow-on-hover { transition: box-shadow 0.3s ease; }
+.glow-on-hover:hover { box-shadow: 0 0 24px rgba(99,102,241,0.35), 0 0 48px rgba(99,102,241,0.12); }
+
+/* ============================================================
+   REVEAL
+   ============================================================ */
+@keyframes reveal-up { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+.reveal          { animation: reveal-up 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
+.reveal-delay-1  { animation-delay: 0.1s; }
+.reveal-delay-2  { animation-delay: 0.2s; }
+.reveal-delay-3  { animation-delay: 0.3s; }
+.reveal-delay-4  { animation-delay: 0.4s; }
+
+/* ============================================================
+   DARK MODE TOGGLE ANIMATION
+   ============================================================ */
+@keyframes spin-once { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.dark-toggle-spin { animation: spin-once 0.4s ease; }
