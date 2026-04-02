@@ -3,7 +3,7 @@
     <!-- Decorative background blobs -->
     <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden -z-10">
       <div class="blob-1 absolute -top-24 -left-20 w-96 h-96 bg-indigo-200 dark:bg-indigo-900 opacity-30 rounded-full blur-3xl"></div>
-      <div class="blob-2 absolute top-1/3 right-0 w-128 h-128 bg-pink-200 dark:bg-purple-900 opacity-25 rounded-full blur-3xl"></div>
+      <div class="blob-2 absolute top-1/3 right-0 w-lg h-lg bg-pink-200 dark:bg-purple-900 opacity-25 rounded-full blur-3xl"></div>
       <div class="blob-3 absolute bottom-0 left-1/3 w-160 h-160 bg-purple-100 dark:bg-indigo-950 opacity-20 rounded-full blur-3xl"></div>
     </div>
 

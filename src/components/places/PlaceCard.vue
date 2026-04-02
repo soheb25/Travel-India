@@ -194,7 +194,6 @@ export default {
       } else {
         const toast = useToast();
         toast.warning('Please sign in to save favorites.');
-        this.$router.push({ name: 'SignIn' });
       }
     }
   }

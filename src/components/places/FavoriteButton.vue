@@ -19,6 +19,7 @@
 import { mapState, mapActions } from 'pinia'
 import { useFavoritesStore } from '@/stores/favorites'
 import { useAuthStore } from '@/stores/auth'
+import { useToast } from 'vue-toastification';
 
 export default {
   name: 'FavoriteButton',
@@ -35,8 +36,9 @@ export default {
   methods: {
     ...mapActions(useFavoritesStore, ['toggleFavorite']),
     handleClick() {
+      const toast = useToast();
       if (!this.isAuthenticated) {
-        this.$router.push({ name: 'SignIn' })
+        toast.info('Please log in to manage your favorites.')
         return
       }
       this.toggleFavorite(this.placeId)

@@ -3,7 +3,7 @@
     <h3 class="text-xl font-bold text-indigo-800">Leave Your Review</h3>
 
     <div>
-      <label class="block text-sm font-medium text-gray-700">Rating</label>
+      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Rating</label>
       <div class="mt-1 flex gap-1">
         <button
           v-for="n in 5" :key="n"
@@ -16,14 +16,14 @@
     </div>
 
     <div>
-      <label for="reviewText" class="block text-sm font-medium text-gray-700">Your Thoughts</label>
+      <label for="reviewText" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Your Thoughts</label>
       <textarea
         id="reviewText"
         v-model="reviewText"
         rows="4"
         required
         placeholder="Share your experience..."
-        class="mt-1 block pl-2 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+        class="mt-3 block pl-2 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
       ></textarea>
     </div>
 

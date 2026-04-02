@@ -42,7 +42,7 @@
           <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
           <div class="mt-1 flex gap-2">
             <input id="username" v-model="newUsername" type="text"
-              class="grow rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              class="grow rounded-lg p-2 border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               placeholder="Your display name" />
             <button @click="updateUsername" :disabled="newUsername === profile?.username"
               class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-white font-medium shadow hover:bg-indigo-700 disabled:bg-gray-400 transition">
@@ -64,7 +64,7 @@
     </section>
 
     <!-- Tabs -->
-    <section>
+    <section id="profile-tabs">
       <div class="flex gap-2 border-b border-gray-200 dark:border-gray-700 mb-6">
         <button v-for="tab in tabs" :key="tab.key" @click="activeTab = tab.key"
           class="px-4 cursor-pointer py-2 text-sm font-semibold rounded-t-lg transition"
@@ -273,6 +273,16 @@ export default {
   mounted() {
     this.fetchUserFavorites();
     this.fetchUserBookings();
+
+    // If redirected from booking, activate bookings tab and scroll to it
+    const tab = this.$route.query.tab
+    if (tab && this.tabs.find(t => t.key === tab)) {
+      this.activeTab = tab
+      this.$nextTick(() => {
+        const el = document.getElementById('profile-tabs')
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    }
   }
 };
 </script>

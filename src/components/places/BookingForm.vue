@@ -86,7 +86,7 @@
 
       <button type="submit" :disabled="isLoading"
         class="w-full cursor-pointer rounded-lg bg-indigo-600 px-4 py-2.5 font-semibold text-white shadow hover:bg-indigo-700 disabled:bg-indigo-400 transition">
-        {{ isLoading ? 'Booking...' : 'Confirm Booking' }}
+        {{ isLoading ? 'Booking...' : 'Book Now' }}
       </button>
     </form>
   </div>
@@ -150,11 +150,15 @@ export default {
       })
 
       if (success) {
-        toast.success(this.isFree ? 'Visit planned! Check your profile.' : 'Booking confirmed! Check your profile.')
+        toast.success(this.isFree ? 'Visit planned! Redirecting to your bookings...' : 'Booking confirmed! Redirecting to your bookings...')
         this.visitDate = ''
         this.numVisitors = 1
         this.visitorType = 'indian'
         this.$emit('booked')
+        // Redirect to profile bookings tab
+        setTimeout(() => {
+          this.$router.push({ name: 'Profile', query: { tab: 'bookings' } })
+        }, 1000)
       } else {
         const store = useBookingsStore()
         this.bookingError = store.error || 'Booking failed. Please try again.'
