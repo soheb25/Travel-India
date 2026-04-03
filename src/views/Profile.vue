@@ -6,7 +6,7 @@
       <div class="px-6 py-10 sm:px-8 sm:py-12 text-white">
         <h1 class="text-4xl font-extrabold tracking-tight drop-shadow-sm">My Profile</h1>
         <p class="mt-2 text-white/80">Manage your account, favorites, bookings and reviews.</p>
-        <div class="mt-6 inline-flex items-center gap-3 rounded-xl bg-white/10 px-4 py-2 ring-1 ring-white/20 backdrop-blur">
+        <div class="mt-6 sm:inline-flex flex items-center sm:gap-3 gap-1 rounded-xl bg-white/10 sm:px-4 px-2 py-2 ring-1 ring-white/20 backdrop-blur">
           <span class="text-sm">⭐ {{ favoritePlaceIds.length }} Favorites</span>
           <span class="mx-2 h-4 w-px bg-white/30"></span>
           <span class="text-sm">🎟️ {{ bookings.length }} Bookings</span>

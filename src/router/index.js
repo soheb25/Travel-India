@@ -38,6 +38,18 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
+      path: '/payment',
+      name: 'Payment',
+      component: () => import('@/views/Payment.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/booking-confirmation/:bookingId',
+      name: 'BookingConfirmation',
+      component: () => import('@/views/BookingConfirmation.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
       path: '/admin',
       name: 'Admin',
       component: () => import('@/views/Admin.vue'),

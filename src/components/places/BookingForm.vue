@@ -101,7 +101,7 @@ export default {
   name: 'BookingForm',
   props: {
     placeId: { type: String, required: true },
-    // null means free entry; { indian: N, foreigner: N } means paid
+    placeName: { type: String, default: '' },
     entryFee: { type: Object, default: null },
     isAuthenticated: { type: Boolean, default: false }
   },
@@ -141,29 +141,40 @@ export default {
         return
       }
 
-      const success = await this.createBooking({
-        placeId: this.placeId,
-        visitDate: this.visitDate,
-        numVisitors: this.numVisitors,
-        totalPrice: this.totalPrice,
-        visitorType: this.isFree ? 'free' : this.visitorType
-      })
-
-      if (success) {
-        toast.success(this.isFree ? 'Visit planned! Redirecting to your bookings...' : 'Booking confirmed! Redirecting to your bookings...')
-        this.visitDate = ''
-        this.numVisitors = 1
-        this.visitorType = 'indian'
-        this.$emit('booked')
-        // Redirect to profile bookings tab
-        setTimeout(() => {
-          this.$router.push({ name: 'Profile', query: { tab: 'bookings' } })
-        }, 1000)
-      } else {
-        const store = useBookingsStore()
-        this.bookingError = store.error || 'Booking failed. Please try again.'
-        toast.error(this.bookingError)
+      // For free entry — save directly and go to confirmation
+      if (this.isFree) {
+        const success = await this.createBooking({
+          placeId: this.placeId,
+          visitDate: this.visitDate,
+          numVisitors: this.numVisitors,
+          totalPrice: 0,
+          visitorType: 'free'
+        })
+        if (success) {
+          const store = useBookingsStore()
+          const booking = store.bookings[0]
+          toast.success('Visit planned successfully!')
+          this.$emit('booked')
+          this.$router.push({ name: 'BookingConfirmation', params: { bookingId: booking.id } })
+        } else {
+          this.bookingError = useBookingsStore().error || 'Booking failed.'
+          toast.error(this.bookingError)
+        }
+        return
       }
+
+      // For paid entry — go to payment page with booking details as state
+      this.$router.push({
+        name: 'Payment',
+        state: {
+          placeId: this.placeId,
+          visitDate: this.visitDate,
+          numVisitors: this.numVisitors,
+          totalPrice: this.totalPrice,
+          visitorType: this.visitorType,
+          placeName: this.placeName
+        }
+      })
     }
   }
 }

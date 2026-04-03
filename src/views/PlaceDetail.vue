@@ -114,7 +114,7 @@
 
         <!-- Right / Sidebar -->
         <aside class="space-y-8">
-          <BookingForm :placeId="placeData.id" :entryFee="entryFeeNumber" :isAuthenticated="isAuthenticated" />
+          <BookingForm :placeId="placeData.id" :placeName="placeData.name" :entryFee="entryFeeNumber" :isAuthenticated="isAuthenticated" />
 
           <WeatherWidget
             :lat="placeData.latitude"
