@@ -57,7 +57,7 @@
               : 'border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-700'">
             <input type="radio" :value="method.id" v-model="selectedMethod" class="accent-indigo-600" />
             <span class="text-xl">{{ method.icon }}</span>
-            <div class="flex-grow">
+            <div class="grow">
               <p class="text-sm font-semibold text-gray-800 dark:text-gray-100">{{ method.name }}</p>
               <p class="text-xs text-gray-400 dark:text-gray-500">{{ method.desc }}</p>
             </div>

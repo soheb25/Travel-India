@@ -11,7 +11,7 @@
     <template v-else-if="booking">
 
       <!-- Success Banner -->
-      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-600 p-6 text-white shadow-3d">
+      <div class="relative overflow-hidden rounded-2xl bg-linear-to-r from-emerald-500 via-teal-500 to-indigo-600 p-6 text-white shadow-3d">
         <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
         <div class="relative flex items-center gap-4">
           <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/20 text-4xl shadow">

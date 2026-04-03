@@ -8,7 +8,7 @@
   <div v-else class="space-y-12">
     <!-- Loading skeleton -->
     <div v-if="isDetailLoading || !placeData" class="animate-pulse space-y-5">
-      <div class="relative h-96 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 overflow-hidden"></div>
+      <div class="relative h-96 rounded-2xl bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 overflow-hidden"></div>
       <div class="h-8 w-2/3 rounded bg-gray-300"></div>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div class="lg:col-span-2 space-y-4">
@@ -39,7 +39,7 @@
           <div v-else class="flex h-full w-full items-center justify-center bg-gray-100 text-gray-400">
             No Images Available
           </div>
-          <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+          <div class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent"></div>
           <div class="absolute bottom-4 left-4">
             <span class="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200">
               {{ heroImages.length }} Photos
